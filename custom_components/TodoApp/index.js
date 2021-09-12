@@ -1,10 +1,37 @@
+const todoTemplate = document.createElement('template');
+todoTemplate.innerHTML = `
+    <style>
+        .container {
+            border: 1px solid blue;
+            padding: 10px;
+            display: flex;
+        }
+        .container p {
+            display: block;
+            width: 1005;
+        }
+    </style>
+    <div class='container'></div>
+    <button>Add New</button>
+`;
 class TodoWidget extends HTMLElement {
     constructor(props) {
         super(props);
-        this.innerHTML = `
-            <todo-item-widget title="1st todo"></todo-item-widget>
-            <todo-item-widget title="2nd todo"></todo-item-widget>
-        `;
+        this.state = {
+            todos: [
+                {
+                    title: 'first todo',
+                    status: false,
+                },
+                {
+                    title: 'secnod todo',
+                    status: false,
+                }
+            ]
+        };
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild(todoTemplate.content.cloneNode(true));
+        this.shadowRoot.querySelector('.container').innerHTML = this.state.todos.map(todo => `<todo-item-widget title="${todo.title}" checked=${todo.status}></todo-item-widget>`).join('</br>');
     }
 }
 
@@ -12,7 +39,7 @@ class TodoWidget extends HTMLElement {
 class TodoItemWidget extends HTMLElement {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             title: this.getAttribute('title'),
             status: this.getAttribute('status'),
         }
@@ -20,7 +47,7 @@ class TodoItemWidget extends HTMLElement {
             <p>${this.state.title}</p>
         `;
     }
-    
+
 };
 
 window.customElements.define('todo-item-widget', TodoItemWidget);
