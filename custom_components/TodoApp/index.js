@@ -5,6 +5,7 @@ todoTemplate.innerHTML = `
             border: 1px solid blue;
             padding: 10px;
             display: flex;
+            flex-direction: column;
         }
         .container p {
             display: block;
@@ -31,7 +32,7 @@ class TodoWidget extends HTMLElement {
         };
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(todoTemplate.content.cloneNode(true));
-        this.shadowRoot.querySelector('.container').innerHTML = this.state.todos.map(todo => `<todo-item-widget title="${todo.title}" checked=${todo.status}></todo-item-widget>`).join('</br>');
+        this.shadowRoot.querySelector('.container').innerHTML = this.state.todos.map(todo => `<todo-item-widget title="${todo.title}" checked=${todo.status}></todo-item-widget>`).join('');
     }
 }
 
@@ -44,7 +45,9 @@ class TodoItemWidget extends HTMLElement {
             status: this.getAttribute('status'),
         }
         this.innerHTML = `
-            <p>${this.state.title}</p>
+            <div>
+                <p><strong>Title: </strong>${this.state.title}</p>
+            </div>
         `;
     }
 
