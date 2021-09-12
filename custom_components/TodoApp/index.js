@@ -36,7 +36,6 @@ class TodoWidget extends HTMLElement {
     }
 }
 
-// const TodoElementTemplate = 
 class TodoItemWidget extends HTMLElement {
     constructor(props) {
         super(props);
