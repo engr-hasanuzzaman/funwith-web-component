@@ -1,14 +1,14 @@
 class SubmitButton extends HTMLElement {
-    constructor(props) {
-        super(props);
-        this.label = this.getAttribute('label') || 'Default';
+    constructor() {
+        super();
     }
 
     connectedCallback() {
+        this.label = this.getAttribute('label');
         this.innerHTML = `
-            <button type='submit'>${this.label}</button>
+            <button type="submit">${this.label}</button>
         `;
     }
 }
 
-customElements.define('submit-button', SubmitButton);
+window.customElements.define('submit-button', SubmitButton);
