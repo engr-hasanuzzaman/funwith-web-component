@@ -5,12 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Experimenting Custome Element</title>
+    <style>
+        .btn {
+            color: red;
+            background-color: green;
+        }
+    </style>
 </head>
 <body>
-    <hello-world></hello-world>
+    <!-- 1st example: simple web component -->
+    <!-- <hello-world></hello-world> -->
+
+    <!-- 3rd example. Inner style is changing the outer element also -->
+    <button class="btn">Buitin Button</button>
+
+    <!-- 2nd example -->
     <submit-button label="submit"></submit-button>
+    
+    <!-- 4th: shadow dom that create isolated aread from outside area -->
+    <submit-button-shadow label="shadow submit"></submit-button-shadow>
+
+    
     <!-- include the scripts -->
     <script src="SubmitButton.js"></script>
     <script src="HelloWorld.js"></script>
+    <script src="SubmitButtonShawdow.js"></script>
 </body>
 </html>
