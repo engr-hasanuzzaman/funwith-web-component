@@ -3,6 +3,7 @@ class SubmitButton extends HTMLElement {
         super();
     }
 
+    // callback method
     connectedCallback() {
         this.label = this.getAttribute('label');
         this.innerHTML = `
@@ -11,4 +12,5 @@ class SubmitButton extends HTMLElement {
     }
 }
 
+// define the custom element
 window.customElements.define('submit-button', SubmitButton);
