@@ -15,6 +15,9 @@ const template = (data) => `
             padding: 3px;
             border-radius: 50%;
         }
+        :host {
+            position: relative;
+        }
     </style>
     <span class="info-container">
         <slot></slot>
@@ -38,7 +41,6 @@ class ZToolTip extends HTMLElement {
         }
         this.shadowRoot.innerHTML = template({ text: this._tooltipText});
         this._infoContainer = this.shadowRoot.querySelector('.info-container');
-        this.shadowRoot.position = 'relative';
         this._infoContainer.addEventListener('mouseenter', this._showInfo.bind(this));
         this._infoContainer.addEventListener('mouseleave', this._hideInfo.bind(this));
     }
