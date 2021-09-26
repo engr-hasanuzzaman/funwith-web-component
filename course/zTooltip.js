@@ -10,6 +10,18 @@ const template = (data) => `
             border-bottom: 1px dotted red;
             cursor: help;
         }
+        :host(.red) {
+            border: 1px solid red;
+            padding: 2px;
+        }
+
+        :host-context(p) {
+            font-weight: 700;
+        }
+
+        :host-context(.important) {
+            font-size: 20px;
+        }
     </style>
     <span class="info-container">
         <slot></slot>
