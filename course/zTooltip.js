@@ -10,22 +10,15 @@ const template = (data) => `
             border-bottom: 1px dotted red;
             cursor: help;
         }
-        :host(.red) {
-            border: 1px solid red;
-            padding: 2px;
-        }
-
-        :host-context(p) {
-            font-weight: 700;
-        }
-
-        :host-context(.important) {
-            font-size: 20px;
+        .info-icon {
+            background-color: var(--info-bg-color, rgba(0,0,1,0.3));
+            padding: 3px;
+            border-radius: 50%;
         }
     </style>
     <span class="info-container">
         <slot></slot>
-        (?)
+        <span class="info-icon">?</span>
     </span>
     <div class="tooltip-text">${data.text}</div>
 `;
