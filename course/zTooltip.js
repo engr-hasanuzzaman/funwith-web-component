@@ -13,10 +13,15 @@ class ZToolTip extends HTMLElement {
         }
         this.infoElement = document.createElement('div');
         this.infoElement.textContent = this._tooltipText;
+        this.infoElement.style.position = 'absolute';
+        this.infoElement.style.backgroundColor = 'black';
+        this.infoElement.style.color = 'white';
+
         icon.textContent = '(?)';
         icon.addEventListener('mouseenter', this._showInfo.bind(this));
         icon.addEventListener('mouseleave', this._hideInfo.bind(this));
         this.appendChild(icon);
+        this.style.position = 'relative';
     }
 
     _showInfo() {
