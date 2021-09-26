@@ -1,13 +1,18 @@
-const template = `
+const template = (data) => `
     <style>
-        div {
+        .tooltip-text {
             position: absolute;
             background-color: black;
             color: #ffffff;
+            display: none;
+        }
+        ::slotted(*) {
+            border-bottom: 1px solid red;
         }
     </style>
     <slot></slot>
     <span class="info">(?)</span>
+    <div class="tooltip-text">${data.text}</div>
 `;
 
 class ZToolTip extends HTMLElement {
@@ -16,27 +21,25 @@ class ZToolTip extends HTMLElement {
         this.infoElement = null;
         this._tooltipText = 'Info will be show in here';
         this.attachShadow({ mode: 'open'});
-        this.shadowRoot.innerHTML = template;
     }
 
     connectedCallback() {
-        const icon = this.shadowRoot.querySelector('span');
-        this.style.position = 'relative';
         if(this.hasAttribute('text')) {
             this._tooltipText = this.getAttribute('text');
         }
-        this.infoElement = document.createElement('div');
-        this.infoElement.textContent = this._tooltipText;
+        this.shadowRoot.innerHTML = template({ text: this._tooltipText});
+        const icon = this.shadowRoot.querySelector('span');
+        this.shadowRoot.position = 'relative';
         icon.addEventListener('mouseenter', this._showInfo.bind(this));
         icon.addEventListener('mouseleave', this._hideInfo.bind(this));
     }
 
     _showInfo() {
-        this.shadowRoot.appendChild(this.infoElement);
+        this.shadowRoot.querySelector('.tooltip-text').style.display = 'block';
     }
 
     _hideInfo() {
-        this.shadowRoot.removeChild(this.infoElement);
+        this.shadowRoot.querySelector('.tooltip-text').style.display = 'none';
     }
 }
 
