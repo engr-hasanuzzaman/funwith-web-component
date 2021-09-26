@@ -43,8 +43,14 @@ class ZToolTip extends HTMLElement {
     }
 
     attributeChangedCallback(attr, oldVal, newVal) {
-        if(this.shadowRoot.querySelector('.tooltip-text')) {
-            this.shadowRoot.querySelector('.tooltip-text').innerText = newVal;
+        if(newVal  === oldVal) {
+            return;
+        }
+
+        if(attr === 'text') {
+            if(this.shadowRoot.querySelector('.tooltip-text')) {
+                this.shadowRoot.querySelector('.tooltip-text').innerText = newVal;
+            }
         }
     }
 
