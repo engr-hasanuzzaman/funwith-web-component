@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- include the scripts -->
+    <script src="SubmitButton.js"></script>
+    <script src="HelloWorld.js"></script>
+    <script src="SubmitButtonShawdow.js"></script>
+    <script src="zTooltip.js"></script>
     <title>Experimenting Custome Element</title>
     <style>
         .btn {
@@ -25,10 +30,9 @@
     <!-- 4th: shadow dom that create isolated aread from outside area -->
     <submit-button-shadow label="shadow submit"></submit-button-shadow>
 
-    
-    <!-- include the scripts -->
-    <script src="SubmitButton.js"></script>
-    <script src="HelloWorld.js"></script>
-    <script src="SubmitButtonShawdow.js"></script>
+    <!-- 5th -->
+    <!-- usefill compoent, template, shadow dom -->
+    <p>We are leaning about the <z-tooltip text="info about web component">web component</z-tooltip></p>
+    <p>This is a suit of <z-tooltip>techonologies</z-tooltip></p>
 </body>
 </html>
