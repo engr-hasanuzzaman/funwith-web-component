@@ -42,12 +42,23 @@ class ZToolTip extends HTMLElement {
         icon.addEventListener('mouseleave', this._hideInfo.bind(this));
     }
 
+    attributeChangedCallback(attr, oldVal, newVal) {
+        if(this.shadowRoot.querySelector('.tooltip-text')) {
+            this.shadowRoot.querySelector('.tooltip-text').innerText = newVal;
+        }
+    }
+
     _showInfo() {
         this.shadowRoot.querySelector('.tooltip-text').style.display = 'block';
     }
 
     _hideInfo() {
         this.shadowRoot.querySelector('.tooltip-text').style.display = 'none';
+    }
+
+    // register attributes want to ovserve
+    static get observedAttributes() {
+        return ['text'];
     }
 }
 
