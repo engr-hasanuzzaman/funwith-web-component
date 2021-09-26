@@ -26,6 +26,7 @@ const template = (data) => `
 class ZToolTip extends HTMLElement {
     constructor() {
         super();
+        this._infoContainer;
         this.infoElement = null;
         this._tooltipText = 'Info will be show in here';
         this.attachShadow({ mode: 'open'});
@@ -36,10 +37,10 @@ class ZToolTip extends HTMLElement {
             this._tooltipText = this.getAttribute('text');
         }
         this.shadowRoot.innerHTML = template({ text: this._tooltipText});
-        const icon = this.shadowRoot.querySelector('span');
+        this._infoContainer = this.shadowRoot.querySelector('.info-container');
         this.shadowRoot.position = 'relative';
-        icon.addEventListener('mouseenter', this._showInfo.bind(this));
-        icon.addEventListener('mouseleave', this._hideInfo.bind(this));
+        this._infoContainer.addEventListener('mouseenter', this._showInfo.bind(this));
+        this._infoContainer.addEventListener('mouseleave', this._hideInfo.bind(this));
     }
 
     attributeChangedCallback(attr, oldVal, newVal) {
@@ -65,6 +66,12 @@ class ZToolTip extends HTMLElement {
     // register attributes want to ovserve
     static get observedAttributes() {
         return ['text'];
+    }
+
+    disconnectedCallback() {
+        console.log('--removed');
+        this._infoContainer.removeEventListener('mouseenter', this._showInfo);
+        this._infoContainer.removeEventListener('mouseleave', this._hideInfo);
     }
 }
 
