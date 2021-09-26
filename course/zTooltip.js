@@ -1,9 +1,9 @@
 class ZToolTip extends HTMLElement {
     constructor() {
         super();
-        console.log('tooltip created');
         this.infoElement = null;
         this._tooltipText = 'Info will be show in here';
+        this.attachShadow({ mode: 'open'});
     }
 
     connectedCallback() {
@@ -20,16 +20,16 @@ class ZToolTip extends HTMLElement {
         icon.textContent = '(?)';
         icon.addEventListener('mouseenter', this._showInfo.bind(this));
         icon.addEventListener('mouseleave', this._hideInfo.bind(this));
-        this.appendChild(icon);
+        this.shadowRoot.appendChild(icon);
         this.style.position = 'relative';
     }
 
     _showInfo() {
-        this.appendChild(this.infoElement);
+        this.shadowRoot.appendChild(this.infoElement);
     }
 
     _hideInfo() {
-        this.removeChild(this.infoElement);
+        this.shadowRoot.removeChild(this.infoElement);
     }
 }
 
