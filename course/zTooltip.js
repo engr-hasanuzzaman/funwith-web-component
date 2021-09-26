@@ -6,12 +6,15 @@ const template = (data) => `
             color: #ffffff;
             display: none;
         }
-        ::slotted(*) {
-            border-bottom: 1px solid red;
+        .info-container {
+            border-bottom: 1px dotted red;
+            cursor: help;
         }
     </style>
-    <slot></slot>
-    <span class="info">(?)</span>
+    <span class="info-container">
+        <slot></slot>
+        (?)
+    </span>
     <div class="tooltip-text">${data.text}</div>
 `;
 
