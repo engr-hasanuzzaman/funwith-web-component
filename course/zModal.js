@@ -50,7 +50,7 @@ const modalTemplate = `
 
     <section id="footer">
         <button>Confirm</button>
-        <button>Cancel</button>
+        <button id="close-modal">Cancel</button>
     </section>
 </div>
 `;
@@ -60,6 +60,7 @@ class ZModal extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = modalTemplate;
+        this.shadowRoot.querySelector('#close-modal').addEventListener('click', this._close.bind(this));
     }
 
     connectedCallback() {
@@ -77,7 +78,7 @@ class ZModal extends HTMLElement {
 
     attributeChangedCallback(attr, newVal, oldVal) {
         if(attr === 'show') {
-            this._isOpen = this.hasAttribute('show');
+            this._isOpen = !this._isOpen;
         }
 
         this._render();
@@ -85,6 +86,11 @@ class ZModal extends HTMLElement {
 
     static get observedAttributes() {
         return ['show'];
+    }
+
+    _close() {
+        this._isOpen = false;
+        this._render();
     }
 }
 
