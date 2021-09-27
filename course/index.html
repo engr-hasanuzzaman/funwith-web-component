@@ -21,12 +21,24 @@
     <br>
     <br>
     <!-- modal section example -->
-    <button>Show modal content</button>
-    <z-modal id="content-info" show>
+    <button id="modal-controller">Show modal content</button>
+    <z-modal id="content-modal">
         <div>
             <h2>This is content header</h2>
             <p>This is dummy content for the modal body</p>
         </div>
     </z-modal>
+
+    <script>
+        document.querySelector('#modal-controller').addEventListener('click', () => {
+            const modal = document.querySelector('#content-modal');
+            debugger;
+            if(modal.hasAttribute('show')) {
+                modal.removeAttribute('show');
+            } else {
+                modal.setAttribute('show', 'show');
+            }
+        })
+    </script>
 </body>
 </html>
