@@ -74,6 +74,18 @@ class ZModal extends HTMLElement {
             this.style.display = 'none';
         }
     }
+
+    attributeChangedCallback(attr, newVal, oldVal) {
+        if(attr === 'show') {
+            this._isOpen = this.hasAttribute('show');
+        }
+
+        this._render();
+    }
+
+    static get observedAttributes() {
+        return ['show'];
+    }
 }
 
 customElements.define('z-modal', ZModal);
