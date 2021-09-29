@@ -62,7 +62,8 @@ class ZModal extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = modalTemplate;
-        this.shadowRoot.querySelector('#close-modal').addEventListener('click', this._close.bind(this));
+        this.shadowRoot.querySelector('#close-modal').addEventListener('click', this._hide.bind(this));
+        this.shadowRoot.querySelector('#close-modal').addEventListener('click', this._hide.bind(this));
         // acessing slot data for leaning purpose
         const slots = this.shadowRoot.querySelectorAll('slot');
         console.dir(slots);
@@ -80,29 +81,36 @@ class ZModal extends HTMLElement {
 
     _render() {
         if(this._isOpen) {
-            this.style.display = 'block';
+            this._open();
         } else {
-            this.style.display = 'none';
+            this._hide();
         }
     }
 
     attributeChangedCallback(attr, newVal, oldVal) {
         if(attr === 'show') {
-            this._isOpen = !this._isOpen;
+           this._open()
         }
-
-        this._render();
     }
 
     static get observedAttributes() {
         return ['show'];
     }
 
-    _close() {
-        this._isOpen = false;
-        this._render();
+    _open() {
+        this._isOpen = true;
+        this.style.display = 'block';
     }
 
+    _hide() {
+        this._isOpen = false;
+        this.style.display = 'none';
+    }
+
+    _confirm() {
+        this._hide();
+    }
+    
     // public method
     open() {
         this.setAttribute('show', '');
