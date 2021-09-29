@@ -41,7 +41,9 @@ const modalTemplate = `
 <div id="back-drop"></div>
 <div id="modal">
     <header>
-        <h3>Please confirm</h3>
+        <slot name="header">
+            <h3>Please confirm</h3>
+        </slot>
     </header>
 
     <section id="main-body">
