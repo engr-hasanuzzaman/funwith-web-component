@@ -51,7 +51,7 @@ const modalTemplate = `
     </section>
 
     <section id="footer">
-        <button>Confirm</button>
+        <button id="confirm-modal">Confirm</button>
         <button id="close-modal">Cancel</button>
     </section>
 </div>
@@ -62,8 +62,8 @@ class ZModal extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = modalTemplate;
-        this.shadowRoot.querySelector('#close-modal').addEventListener('click', this._hide.bind(this));
-        this.shadowRoot.querySelector('#close-modal').addEventListener('click', this._hide.bind(this));
+        this.shadowRoot.querySelector('#close-modal').addEventListener('click', this._cancel.bind(this));
+        this.shadowRoot.querySelector('#confirm-modal').addEventListener('click', this._confirm.bind(this));
         // acessing slot data for leaning purpose
         const slots = this.shadowRoot.querySelectorAll('slot');
         console.dir(slots);
@@ -107,21 +107,33 @@ class ZModal extends HTMLElement {
         this.style.display = 'none';
     }
 
-    _confirm() {
+    _cancel(event) {
         this._hide();
+        const cancelEvent = new Event('cancel', { bubbles: true });
+        event.target.dispatchEvent(cancelEvent);
+    }
+
+    _confirm(event) {
+        this._hide();
+        const confirmEvent = new Event('confirm', { bubbles: true });
+        event.target.dispatchEvent(confirmEvent);
     }
     
     // public method
     open() {
-        this.setAttribute('show', '');
+        this._open();
     }
 
     close() {
-        this.removeAttribute('show');
+        this._cancel();
     }
 
     toggle() {
-        this._isOpen = !this._isOpen;
+        if(this._isOpen) {
+            this._cancel();
+        } else {
+            this._open();
+        }
     }
 }
 
