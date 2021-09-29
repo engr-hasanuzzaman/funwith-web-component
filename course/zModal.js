@@ -25,8 +25,12 @@ const modalTemplate = `
         flex-direction: column;
         justify-content: space-between;
         padding: 10px;
+        transition: all 0.7s ease-out;
     }
 
+    :host([style*="display: none;"]) #modal {
+        top: 40vh;
+    }
     #footer {
         display: flex;
         justify-content: flex-end;
