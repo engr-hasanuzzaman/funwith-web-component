@@ -92,6 +92,15 @@ class ZModal extends HTMLElement {
         this._isOpen = false;
         this._render();
     }
+
+    // public method
+    open() {
+        this.setAttribute('show', '');
+    }
+
+    close() {
+        this.removeAttribute('show');
+    }
 }
 
 customElements.define('z-modal', ZModal);

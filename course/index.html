@@ -33,9 +33,9 @@
         document.querySelector('#modal-controller').addEventListener('click', () => {
             const modal = document.querySelector('#content-modal');
             if(modal.hasAttribute('show')) {
-                modal.removeAttribute('show');
+                modal.close();
             } else {
-                modal.setAttribute('show', 'show');
+                modal.open();
             }
         })
     </script>
