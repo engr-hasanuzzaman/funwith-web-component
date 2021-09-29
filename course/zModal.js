@@ -63,6 +63,14 @@ class ZModal extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = modalTemplate;
         this.shadowRoot.querySelector('#close-modal').addEventListener('click', this._close.bind(this));
+        // acessing slot data for leaning purpose
+        const slots = this.shadowRoot.querySelectorAll('slot');
+        console.dir(slots);
+        slots[1].addEventListener('slotchange', () => {
+            // on slot data, space is considered as the string, if we move data on a single line
+            // it will show one assignedNodes
+            console.dir(slots[1].assignedNodes());
+        });
     }
 
     connectedCallback() {
