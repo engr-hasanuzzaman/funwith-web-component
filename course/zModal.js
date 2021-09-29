@@ -62,8 +62,11 @@ class ZModal extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = modalTemplate;
+        // control the modal state 
         this.shadowRoot.querySelector('#close-modal').addEventListener('click', this._cancel.bind(this));
         this.shadowRoot.querySelector('#confirm-modal').addEventListener('click', this._confirm.bind(this));
+        this.shadowRoot.querySelector('#back-drop').addEventListener('click', this._cancel.bind(this));
+        
         // acessing slot data for leaning purpose
         const slots = this.shadowRoot.querySelectorAll('slot');
         console.dir(slots);
