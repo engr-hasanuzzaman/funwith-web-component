@@ -34,9 +34,21 @@
     </z-modal>
 
     <script>
+        const modal = document.querySelector('#content-modal');
+        // on confirm
+        modal.addEventListener('confirm', (event) => {
+            console.log('confirm triggered');
+            console.log(event.type);
+        });
+
+        modal.addEventListener('cancel', (event) => {
+            console.log('cancel triggered');
+            console.log(event.type);
+        });
+
         document.querySelector('#modal-controller').addEventListener('click', () => {
-           document.querySelector('#content-modal').open();
-        })
+           modal.open();
+        });
     </script>
 </body>
 </html>

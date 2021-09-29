@@ -109,13 +109,13 @@ class ZModal extends HTMLElement {
 
     _cancel(event) {
         this._hide();
-        const cancelEvent = new Event('cancel', { bubbles: true });
+        const cancelEvent = new Event('cancel', { bubbles: true, composed: true });
         event.target.dispatchEvent(cancelEvent);
     }
 
     _confirm(event) {
         this._hide();
-        const confirmEvent = new Event('confirm', { bubbles: true });
+        const confirmEvent = new Event('confirm', { bubbles: true, composed: true });
         event.target.dispatchEvent(confirmEvent);
     }
     
