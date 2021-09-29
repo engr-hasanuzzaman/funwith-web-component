@@ -101,6 +101,10 @@ class ZModal extends HTMLElement {
     close() {
         this.removeAttribute('show');
     }
+
+    toggle() {
+        this._isOpen = !this._isOpen;
+    }
 }
 
 customElements.define('z-modal', ZModal);

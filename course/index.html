@@ -31,12 +31,7 @@
 
     <script>
         document.querySelector('#modal-controller').addEventListener('click', () => {
-            const modal = document.querySelector('#content-modal');
-            if(modal.hasAttribute('show')) {
-                modal.close();
-            } else {
-                modal.open();
-            }
+           document.querySelector('#content-modal').open();
         })
     </script>
 </body>
