@@ -6,6 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface FooBar {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -20,19 +22,37 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface TodoComponent {
+    }
 }
 declare global {
+    interface HTMLFooBarElement extends Components.FooBar, HTMLStencilElement {
+    }
+    var HTMLFooBarElement: {
+        prototype: HTMLFooBarElement;
+        new (): HTMLFooBarElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLTodoComponentElement extends Components.TodoComponent, HTMLStencilElement {
+    }
+    var HTMLTodoComponentElement: {
+        prototype: HTMLTodoComponentElement;
+        new (): HTMLTodoComponentElement;
+    };
     interface HTMLElementTagNameMap {
+        "foo-bar": HTMLFooBarElement;
         "my-component": HTMLMyComponentElement;
+        "todo-component": HTMLTodoComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface FooBar {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -47,15 +67,21 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface TodoComponent {
+    }
     interface IntrinsicElements {
+        "foo-bar": FooBar;
         "my-component": MyComponent;
+        "todo-component": TodoComponent;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "foo-bar": LocalJSX.FooBar & JSXBase.HTMLAttributes<HTMLFooBarElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "todo-component": LocalJSX.TodoComponent & JSXBase.HTMLAttributes<HTMLTodoComponentElement>;
         }
     }
 }
