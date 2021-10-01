@@ -10,5 +10,12 @@
   </head>
   <body>
     <side-drawer title="Main Menu"></side-drawer>
+
+    <script>
+      const sideDrawer = document.querySelector('side-drawer');
+      setTimeout(() => {
+        sideDrawer.title = "new value";
+      }, 3000)
+    </script>
   </body>
 </html>
