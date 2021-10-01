@@ -1,0 +1,17 @@
+aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 70%;
+    height: 100vh;
+    background-color: #f3f3f3;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+@media (min-width: 415px) {
+    aside{
+        max-width: 50%;
+    }
+    
+}
