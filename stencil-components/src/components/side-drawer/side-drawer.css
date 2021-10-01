@@ -5,8 +5,9 @@ aside {
     width: 70%;
     height: 100vh;
     background-color: #f3f3f3;
-    color: #ffffff;
+    color: #000000;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    padding: 10px;
 }
 
 @media (min-width: 415px) {
