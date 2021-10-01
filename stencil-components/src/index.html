@@ -7,15 +7,39 @@
 
     <script type="module" src="/build/stencil-components.esm.js"></script>
     <script nomodule src="/build/stencil-components.js"></script>
+    <style>
+      .nav-bar ul {
+        list-style: none;
+        margin-left: 0;
+        padding-left: 10px;
+      }
+      .nav-bar ul li {
+        text-decoration: none;
+        margin-top: 2px;
+      }
+
+      .nav-bar ul li a {
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
-    <side-drawer title="Main Menu"></side-drawer>
+    <side-drawer title="Main Menu">
+      <nav class="nav-bar">
+        <ul>
+          <li><a href="http://">Home</a></li>
+          <li><a href="http://">About</a></li>
+          <li><a href="http://">Contact</a></li>
+          <li><a href="http://">Our Services</a></li>
+        </ul>
+      </nav>
+    </side-drawer>
 
     <script>
-      const sideDrawer = document.querySelector('side-drawer');
-      setTimeout(() => {
-        sideDrawer.title = "new value";
-      }, 3000)
+      // const sideDrawer = document.querySelector('side-drawer');
+      // setTimeout(() => {
+      //   sideDrawer.title = "new value";
+      // }, 3000)
     </script>
   </body>
 </html>
