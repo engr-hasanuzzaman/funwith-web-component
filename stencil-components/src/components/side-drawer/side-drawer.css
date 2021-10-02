@@ -13,12 +13,30 @@ aside {
 :host([open]) aside {
     left: 0;
 }
+
+aside header {
+    position: relative;
+}
+
+header button {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    background: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
 aside header h1{
     background-color: rgba(0, 0, 0, 0.26);
     margin: 10px 0;
     line-height: 40px;
     font-weight: 700;
     font-size: 1.5rem;
+}
+
+header button {
+
 }
 @media (min-width: 415px) {
     aside{

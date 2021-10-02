@@ -24,6 +24,7 @@
     </style>
   </head>
   <body>
+    <button class="side-menu-controller">Open Side Menu</button>
     <side-drawer title="Main Menu">
       <nav class="nav-bar">
         <ul>
@@ -36,7 +37,10 @@
     </side-drawer>
 
     <script>
-      // const sideDrawer = document.querySelector('side-drawer');
+      const sideDrawer = document.querySelector('side-drawer');
+      document.querySelector('.side-menu-controller').addEventListener('click', () => {
+        sideDrawer.open = true;
+      });
       // setTimeout(() => {
       //   sideDrawer.title = "new value";
       // }, 3000)
