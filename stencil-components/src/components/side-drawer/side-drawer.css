@@ -25,19 +25,22 @@ header button {
     background: transparent;
     font-size: 1.5rem;
     cursor: pointer;
+    color: #ffffff;
 }
 
-aside header h1{
-    background-color: rgba(0, 0, 0, 0.26);
-    margin: 10px 0;
+header button:hover {
+    color: rgba(0, 0, 0, 1.26);
+    background-color: rgba(256, 256, 256, 2.26);
+}
+header h1{
+    background-color: rgba(0, 0, 0, 1.26);
+    color: #ffffff;
     line-height: 40px;
     font-weight: 700;
     font-size: 1.5rem;
+    margin: 0;
 }
 
-header button {
-
-}
 @media (min-width: 415px) {
     aside{
         max-width: 50%;
