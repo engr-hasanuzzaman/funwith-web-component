@@ -24,7 +24,7 @@
     </style>
   </head>
   <body>
-    <button class="side-menu-controller">Open Side Menu</button>
+    <!-- <button class="side-menu-controller">Open Side Menu</button> -->
     <side-drawer title="Main Menu">
       <nav class="nav-bar">
         <ul>
@@ -36,6 +36,7 @@
       </nav>
     </side-drawer>
 
+    <z-stock-price></z-stock-price>
     <script>
       const sideDrawer = document.querySelector('side-drawer');
       document.querySelector('.side-menu-controller').addEventListener('click', () => {

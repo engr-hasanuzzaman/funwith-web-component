@@ -1,13 +1,20 @@
 import { Component, h } from "@stencil/core";
 
-@Component()
+@Component({
+    tag: 'z-stock-price',
+    shadow: true
+})
 export class StockPrice {
 
     render() {
-        return(
+        return([
             <div>
-                <h1>Stock Price</h1>
+                <input type="text" name="" id="price" />
+                <button>Fetch</button>
+            </div>,
+            <div>
+                <p>Price:</p>
             </div>
-        );
+        ]);
     }
 }
