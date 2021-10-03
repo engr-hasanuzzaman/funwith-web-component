@@ -1,4 +1,4 @@
-import { Component, h, State, Element, Prop, Watch } from "@stencil/core";
+import { Component, h, State, Element, Prop, Watch, Listen } from "@stencil/core";
 import { AV_API_KEY } from "../../global/global";
 @Component({
     tag: 'z-stock-price',
@@ -75,6 +75,15 @@ export class StockPrice {
             this.isValidInput = true;
         }
     }
+
+    // listen zSymbolSelected event on the body to fetch the data using passing symbol
+    @Listen('zSymbolSelected', { target: 'body' })
+    onZSymbolSelected(e: CustomEvent) {
+        this.stockSymbol = e.detail;
+        this.userInput = e.detail;
+        this.isValidInput = true;
+    }
+
     render() {
         return(
             <div class="container">
