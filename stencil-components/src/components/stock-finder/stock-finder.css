@@ -1,7 +1,31 @@
+.container {
+    border-radius: 6px;
+    border: 2px solid #2b2828;
+    color: black;
+    padding: 10px;
+    font-family: sans-serif;
+}
+
+ul {
+    margin-left: 0;
+    padding: 0;
+}
 .search-item {
     list-style: none;
 }
 
 .search-item li {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    padding: 5px;
+    background-color: rgb(67, 67, 233);
+    color: rgb(240, 237, 232);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: rgb(6, 6, 133);
+    color: white;
 }

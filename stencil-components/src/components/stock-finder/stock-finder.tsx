@@ -21,12 +21,12 @@ export class StockFinder {
     }
 
     render() {
-        return [
-            <form onSubmit={this.onFindStocks.bind(this)}>
-                <input type="text" name="symbol" id="symbol" ref={el => this.stockName = el}/>
-                <button>Find</button>
-            </form>,
-            <div>
+        return (
+            <div class="container">
+                <form onSubmit={this.onFindStocks.bind(this)}>
+                    <input type="text" name="symbol" id="symbol" ref={el => this.stockName = el}/>
+                    <button class="btn">Find</button>
+                </form>
                 <ul class="search-item">
                     { this.searchResults.map(r => (
                             <li>
@@ -36,6 +36,7 @@ export class StockFinder {
                     }
                 </ul>
             </div>
-        ];
+        )
+        ;
     }
 }
