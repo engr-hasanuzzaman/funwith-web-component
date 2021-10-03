@@ -1,4 +1,4 @@
-import { Component, h, State, Element, Prop } from "@stencil/core";
+import { Component, h, State, Element, Prop, Watch } from "@stencil/core";
 import { AV_API_KEY } from "../../global/global";
 @Component({
     tag: 'z-stock-price',
@@ -17,7 +17,7 @@ export class StockPrice {
     // two way data binding
     @State() userInput: string;
     @State() isValidInput: boolean = false;
-    @Prop() stockSymbol: string;
+    @Prop({mutable: true, reflect: true}) stockSymbol: string;
 
     onInput(e: Event) {
         this.userInput = (e.target as HTMLInputElement).value;
@@ -39,8 +39,8 @@ export class StockPrice {
         // const symbol = (this.el.shadowRoot.querySelector('#symbol') as HTMLInputElement).value;
 
         // use direct ref to access element value
-        const symbol = this.userInput;
-        this.fetchPrice(symbol);
+        // this will trigger the watcher where we will handle the api call
+        this.stockSymbol = this.userInput;
     }
 
     // api call to fetch the price 
@@ -59,10 +59,19 @@ export class StockPrice {
             this.errorMsg = err.message;
         });
     }
+
+    @Watch('stockSymbol')
+    onStockSymbolChange(newVal, oldVal) {
+        if(newVal !== oldVal) {
+            this.userInput = newVal;
+            this.fetchPrice(this.userInput);
+        }
+    }
     // life cycle hook
     componentDidLoad() {
         if(this.stockSymbol) {
             this.fetchPrice(this.stockSymbol);
+            this.userInput = this.stockSymbol;
         }
     }
     render() {
