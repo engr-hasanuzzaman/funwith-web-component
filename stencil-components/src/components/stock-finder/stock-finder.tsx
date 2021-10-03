@@ -16,7 +16,7 @@ export class StockFinder {
         fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keyWord}&apikey=${AV_API_KEY}`)
         .then(resp => resp.json())
         .then(resp => {
-            this.searchResults = resp['bestMatches'].map(r => ({ Symbol: r['1. symbol'], name: r['2. name']}));
+            this.searchResults = resp['bestMatches'].map(r => ({ symbol: r['1. symbol'], name: r['2. name']}));
         })
     }
 
@@ -29,7 +29,9 @@ export class StockFinder {
             <div>
                 <ul>
                     { this.searchResults.map(r => (
-                            <li>{r.name}</li>
+                            <li>
+                                <strong>{r.symbol}</strong> - {r.name}
+                            </li>
                         ))
                     }
                 </ul>
