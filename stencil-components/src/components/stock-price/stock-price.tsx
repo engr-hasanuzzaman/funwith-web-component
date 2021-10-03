@@ -81,7 +81,7 @@ export class StockPrice {
                 <form onSubmit={this.onFechPrice.bind(this)}>
                     <input type="text" name="symbol" id="symbol" value={this.userInput} onInput={this.onInput.bind(this)}/>
                     <button disabled={!this.isValidInput} class="btn">Fetch</button>
-                </form>
+                </form> 
                 <div>
                     { this.errorMsg && <p>{this.errorMsg}</p> }
                     { !this.errorMsg && <p>Price: {this.price}</p> }
