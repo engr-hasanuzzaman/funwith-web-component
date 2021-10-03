@@ -84,6 +84,10 @@ export class StockPrice {
         this.isValidInput = true;
     }
 
+    // hostDate provide meta data about the host/custom component
+    hostData() {
+        return { class: this.errorMsg ? 'error' : '' };
+    }
     render() {
         return(
             <div class="container">

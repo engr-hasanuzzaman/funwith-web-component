@@ -23,3 +23,7 @@
     background-color: gray;
     color: rgb(66, 64, 64);
 }
+
+:host(.error) .container {
+    border-color: rgb(240, 50, 50);
+}
