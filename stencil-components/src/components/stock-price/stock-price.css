@@ -1,0 +1,13 @@
+form button {
+    cursor: pointer;
+    background-color: blue;
+    color: wheat;
+    border-radius: 3px;
+    border: 1px solid grey;
+}
+
+button[disabled] {
+    cursor: 'not-allowed';
+    background-color: grey;
+    color: black;
+}
