@@ -1,4 +1,4 @@
-import { Component, h, State, Element } from "@stencil/core";
+import { Component, h, State, Element, Prop } from "@stencil/core";
 import { AV_API_KEY } from "../../global/global";
 @Component({
     tag: 'z-stock-price',
@@ -17,6 +17,7 @@ export class StockPrice {
     // two way data binding
     @State() userInput: string;
     @State() isValidInput: boolean = false;
+    @Prop() stockSymbol: string;
 
     onInput(e: Event) {
         this.userInput = (e.target as HTMLInputElement).value;
@@ -28,7 +29,7 @@ export class StockPrice {
     }
     @State() price: number;
 
-    fetchPrice(e: Event) {
+    onFechPrice(e: Event) {
         e.preventDefault();
         if(!this.isValidInput) {
             console.log('Enter valid data ');
@@ -39,6 +40,11 @@ export class StockPrice {
 
         // use direct ref to access element value
         const symbol = this.userInput;
+        this.fetchPrice(symbol);
+    }
+
+    // api call to fetch the price 
+    fetchPrice(symbol: String) {
         fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${AV_API_KEY}`)
         .then(resp => {
             return resp.json();
@@ -53,9 +59,15 @@ export class StockPrice {
             this.errorMsg = err.message;
         });
     }
+    // life cycle hook
+    componentDidLoad() {
+        if(this.stockSymbol) {
+            this.fetchPrice(this.stockSymbol);
+        }
+    }
     render() {
         return([
-            <form onSubmit={this.fetchPrice.bind(this)}>
+            <form onSubmit={this.onFechPrice.bind(this)}>
                 <input type="text" name="symbol" id="symbol" value={this.userInput} onInput={this.onInput.bind(this)}/>
                 <button disabled={!this.isValidInput}>Fetch</button>
             </form>,
