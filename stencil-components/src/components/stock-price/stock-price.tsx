@@ -12,6 +12,8 @@ export class StockPrice {
     // will keep the reference
     inputElm: HTMLInputElement;
 
+    @State()  errorMsg: string;
+
     // two way data binding
     @State() userInput: string;
     @State() isValidInput: boolean = false;
@@ -42,8 +44,14 @@ export class StockPrice {
             return resp.json();
         })
         .then(parsedResp =>  {
+            if(!parsedResp["Global Quote"]["05. price"]) {
+                throw new Error('Invalid symbol');
+            }
             this.price = +parsedResp["Global Quote"]["05. price"];
-        })
+            this.errorMsg = null;
+        }).catch((err: Error) => {
+            this.errorMsg = err.message;
+        });
     }
     render() {
         return([
@@ -52,7 +60,8 @@ export class StockPrice {
                 <button disabled={!this.isValidInput}>Fetch</button>
             </form>,
             <div>
-                <p>Price: {this.price}</p>
+                { this.errorMsg && <p>{this.errorMsg}</p> }
+                { !this.errorMsg && <p>Price: {this.price}</p> }
             </div>
         ]);
     }
