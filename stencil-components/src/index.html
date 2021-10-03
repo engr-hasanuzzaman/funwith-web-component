@@ -47,6 +47,10 @@
       // setTimeout(() => {
       //   sideDrawer.title = "new value";
       // }, 3000)
+      const stockFinder = document.querySelector('z-stock-finder');
+      stockFinder.addEventListener('zSymbolSelected', (e) => {
+        console.log(e);
+      })
     </script>
   </body>
 </html>

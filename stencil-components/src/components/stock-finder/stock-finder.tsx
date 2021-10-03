@@ -11,6 +11,10 @@ export class StockFinder {
     @State() searchResults: { name: string, symbol: string}[] = [];
     @Event({ bubbles: true, composed: true }) zSymbolSelected: EventEmitter<string>;
 
+    onSelectSybol(symbol: string) {
+        this.zSymbolSelected.emit(symbol);
+    }
+
     onFindStocks(e: Event) {
         e.preventDefault();
         const keyWord = this.stockName.value;
@@ -30,7 +34,7 @@ export class StockFinder {
                 </form>
                 <ul class="search-item">
                     { this.searchResults.map(r => (
-                            <li>
+                            <li onClick={this.onSelectSybol.bind(this, r.symbol)}>
                                 <strong>{r.symbol}</strong> - {r.name}
                             </li>
                         ))

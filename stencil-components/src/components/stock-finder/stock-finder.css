@@ -20,6 +20,13 @@ ul {
     padding: 0.15rem;
     font-size: 0.875rem;
     font-weight: 500;
+    cursor: pointer;
+}
+
+.search-item li:hover,
+.search-item li:active {
+    background-color: rgb(110, 16, 110);
+    color: rgb(177, 241, 177);
 }
 
 .btn {
