@@ -61,7 +61,7 @@ export class StockPrice {
     }
 
     @Watch('stockSymbol')
-    onStockSymbolChange(newVal, oldVal) {
+    onStockSymbolChange(newVal: string, oldVal: string) {
         if(newVal !== oldVal) {
             this.userInput = newVal;
             this.fetchPrice(this.userInput);
