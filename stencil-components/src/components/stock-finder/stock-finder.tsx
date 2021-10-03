@@ -1,4 +1,4 @@
-import { Component, State, h } from "@stencil/core";
+import { Component, State, h, Listen } from "@stencil/core";
 import { AV_API_KEY } from '../../global/global';
 
 @Component({
@@ -8,11 +8,16 @@ import { AV_API_KEY } from '../../global/global';
 })
 export class StockFinder {
     @State() stockName: HTMLInputElement;
+    @State() searchResults: { name: string, symbol: string}[] = [];
 
     onFindStocks(e: Event) {
         e.preventDefault();
         const keyWord = this.stockName.value;
         fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keyWord}&apikey=${AV_API_KEY}`)
+        .then(resp => resp.json())
+        .then(resp => {
+            this.searchResults = resp['bestMatches'].map(r => ({ Symbol: r['1. symbol'], name: r['2. name']}));
+        })
     }
 
     render() {
@@ -23,7 +28,10 @@ export class StockFinder {
             </form>,
             <div>
                 <ul>
-                    <li>Result will be shown in here</li>
+                    { this.searchResults.map(r => (
+                            <li>{r.name}</li>
+                        ))
+                    }
                 </ul>
             </div>
         ];
