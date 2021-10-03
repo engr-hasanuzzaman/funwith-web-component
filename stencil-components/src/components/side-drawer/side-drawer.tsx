@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, Method } from '@stencil/core';
 
 @Component({
     tag: 'side-drawer',
@@ -7,10 +7,23 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class SideDrawer {
     @Prop({reflect: true}) title: string;
-    @Prop({reflect: true, mutable: true}) open: boolean;
+    // this property will be synch with attribute and mutalbe
+    // in defautl, propery are controllable from the outside of the component
+    // we can manupulate mutable prop from the inside of the component
+    @Prop({reflect: true, mutable: true}) opened: boolean;
 
     onClose() {
-        this.open = false;
+        this.opened = false;
+    }
+
+    @Method()
+    close() {
+        this.opened = false;
+    }
+
+    @Method()
+    open() {
+        this.opened = true;
     }
 
     render() {

@@ -1,6 +1,6 @@
 import { Component, h } from "@stencil/core";
 
-@Component
+@Component()
 export class StockPrice {
 
     render() {
