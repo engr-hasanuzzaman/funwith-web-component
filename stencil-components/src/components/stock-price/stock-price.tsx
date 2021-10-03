@@ -72,18 +72,21 @@ export class StockPrice {
         if(this.stockSymbol) {
             this.fetchPrice(this.stockSymbol);
             this.userInput = this.stockSymbol;
+            this.isValidInput = true;
         }
     }
     render() {
-        return([
-            <form onSubmit={this.onFechPrice.bind(this)}>
-                <input type="text" name="symbol" id="symbol" value={this.userInput} onInput={this.onInput.bind(this)}/>
-                <button disabled={!this.isValidInput}>Fetch</button>
-            </form>,
-            <div>
-                { this.errorMsg && <p>{this.errorMsg}</p> }
-                { !this.errorMsg && <p>Price: {this.price}</p> }
+        return(
+            <div class="container">
+                <form onSubmit={this.onFechPrice.bind(this)}>
+                    <input type="text" name="symbol" id="symbol" value={this.userInput} onInput={this.onInput.bind(this)}/>
+                    <button disabled={!this.isValidInput} class="btn">Fetch</button>
+                </form>
+                <div>
+                    { this.errorMsg && <p>{this.errorMsg}</p> }
+                    { !this.errorMsg && <p>Price: {this.price}</p> }
+                </div>
             </div>
-        ]);
+        );
     }
 }
