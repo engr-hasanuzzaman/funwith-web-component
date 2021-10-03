@@ -16,6 +16,10 @@ ul {
 
 .search-item li {
     margin-bottom: 10px;
+    border: 1px solid gray;
+    padding: 0.15rem;
+    font-size: 0.875rem;
+    font-weight: 500;
 }
 
 .btn {
