@@ -1,4 +1,4 @@
-import { Component, State, h } from "@stencil/core";
+import { Component, State, h, Event, EventEmitter } from "@stencil/core";
 import { AV_API_KEY } from '../../global/global';
 
 @Component({
@@ -9,6 +9,7 @@ import { AV_API_KEY } from '../../global/global';
 export class StockFinder {
     @State() stockName: HTMLInputElement;
     @State() searchResults: { name: string, symbol: string}[] = [];
+    @Event({ bubbles: true, composed: true }) zSymbolSelected: EventEmitter<string>;
 
     onFindStocks(e: Event) {
         e.preventDefault();

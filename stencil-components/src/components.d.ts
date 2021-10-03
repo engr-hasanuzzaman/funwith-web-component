@@ -84,6 +84,7 @@ declare namespace LocalJSX {
         "title"?: string;
     }
     interface ZStockFinder {
+        "onZSymbolSelected"?: (event: CustomEvent<string>) => void;
     }
     interface ZStockPrice {
         "stockSymbol"?: string;
