@@ -1,28 +1,28 @@
 import { Component, h, State } from "@stencil/core";
-
+import { AV_API_KEY } from "../../global/global";
 @Component({
     tag: 'z-stock-price',
     shadow: true
 })
 export class StockPrice {
-    @State() price: string;
+    @State() price: number;
 
     fetchPrice(e: Event) {
+        const symbol = 'IBM';
         e.preventDefault();
 
-        fetch('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=YV1ATWSX9DJBMBD1')
+        fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${AV_API_KEY}`)
         .then(resp => {
             return resp.json();
         })
         .then(parsedResp =>  {
-            console.log("the price is ", parsedResp["Global Quote"]["05. price"]);
-            this.price = parsedResp["Global Quote"]["05. price"];
+            this.price = +parsedResp["Global Quote"]["05. price"];
         })
     }
     render() {
         return([
             <form onSubmit={this.fetchPrice.bind(this)}>
-                <input type="text" name="" id="price" />
+                <input type="text" name="symbol" id="symbol" />
                 <button>Fetch</button>
             </form>,
             <div>
