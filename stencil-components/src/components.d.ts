@@ -26,6 +26,8 @@ export namespace Components {
         "opened": boolean;
         "title": string;
     }
+    interface ZStockFinder {
+    }
     interface ZStockPrice {
         "stockSymbol": string;
     }
@@ -43,6 +45,12 @@ declare global {
         prototype: HTMLSideDrawerElement;
         new (): HTMLSideDrawerElement;
     };
+    interface HTMLZStockFinderElement extends Components.ZStockFinder, HTMLStencilElement {
+    }
+    var HTMLZStockFinderElement: {
+        prototype: HTMLZStockFinderElement;
+        new (): HTMLZStockFinderElement;
+    };
     interface HTMLZStockPriceElement extends Components.ZStockPrice, HTMLStencilElement {
     }
     var HTMLZStockPriceElement: {
@@ -52,6 +60,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
         "side-drawer": HTMLSideDrawerElement;
+        "z-stock-finder": HTMLZStockFinderElement;
         "z-stock-price": HTMLZStockPriceElement;
     }
 }
@@ -74,12 +83,15 @@ declare namespace LocalJSX {
         "opened"?: boolean;
         "title"?: string;
     }
+    interface ZStockFinder {
+    }
     interface ZStockPrice {
         "stockSymbol"?: string;
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
         "side-drawer": SideDrawer;
+        "z-stock-finder": ZStockFinder;
         "z-stock-price": ZStockPrice;
     }
 }
@@ -89,6 +101,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "side-drawer": LocalJSX.SideDrawer & JSXBase.HTMLAttributes<HTMLSideDrawerElement>;
+            "z-stock-finder": LocalJSX.ZStockFinder & JSXBase.HTMLAttributes<HTMLZStockFinderElement>;
             "z-stock-price": LocalJSX.ZStockPrice & JSXBase.HTMLAttributes<HTMLZStockPriceElement>;
         }
     }
