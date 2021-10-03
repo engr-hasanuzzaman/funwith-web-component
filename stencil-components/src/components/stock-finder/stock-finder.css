@@ -1,0 +1,7 @@
+.search-item {
+    list-style: none;
+}
+
+.search-item li {
+    margin-bottom: 5px;
+}

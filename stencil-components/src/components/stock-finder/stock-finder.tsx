@@ -1,10 +1,10 @@
-import { Component, State, h, Listen } from "@stencil/core";
+import { Component, State, h } from "@stencil/core";
 import { AV_API_KEY } from '../../global/global';
 
 @Component({
     tag: 'z-stock-finder',
+    styleUrls: ['./stock-finder.css'],
     shadow: true,
-    styleUrl: './stock-finder.css'
 })
 export class StockFinder {
     @State() stockName: HTMLInputElement;
@@ -27,7 +27,7 @@ export class StockFinder {
                 <button>Find</button>
             </form>,
             <div>
-                <ul>
+                <ul class="search-item">
                     { this.searchResults.map(r => (
                             <li>
                                 <strong>{r.symbol}</strong> - {r.name}
