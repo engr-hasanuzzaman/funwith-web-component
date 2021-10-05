@@ -26,6 +26,8 @@ export namespace Components {
         "opened": boolean;
         "title": string;
     }
+    interface ZLoader {
+    }
     interface ZStockFinder {
     }
     interface ZStockPrice {
@@ -45,6 +47,12 @@ declare global {
         prototype: HTMLSideDrawerElement;
         new (): HTMLSideDrawerElement;
     };
+    interface HTMLZLoaderElement extends Components.ZLoader, HTMLStencilElement {
+    }
+    var HTMLZLoaderElement: {
+        prototype: HTMLZLoaderElement;
+        new (): HTMLZLoaderElement;
+    };
     interface HTMLZStockFinderElement extends Components.ZStockFinder, HTMLStencilElement {
     }
     var HTMLZStockFinderElement: {
@@ -60,6 +68,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
         "side-drawer": HTMLSideDrawerElement;
+        "z-loader": HTMLZLoaderElement;
         "z-stock-finder": HTMLZStockFinderElement;
         "z-stock-price": HTMLZStockPriceElement;
     }
@@ -83,6 +92,8 @@ declare namespace LocalJSX {
         "opened"?: boolean;
         "title"?: string;
     }
+    interface ZLoader {
+    }
     interface ZStockFinder {
         "onZSymbolSelected"?: (event: CustomEvent<string>) => void;
     }
@@ -92,6 +103,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "my-component": MyComponent;
         "side-drawer": SideDrawer;
+        "z-loader": ZLoader;
         "z-stock-finder": ZStockFinder;
         "z-stock-price": ZStockPrice;
     }
@@ -102,6 +114,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "side-drawer": LocalJSX.SideDrawer & JSXBase.HTMLAttributes<HTMLSideDrawerElement>;
+            "z-loader": LocalJSX.ZLoader & JSXBase.HTMLAttributes<HTMLZLoaderElement>;
             "z-stock-finder": LocalJSX.ZStockFinder & JSXBase.HTMLAttributes<HTMLZStockFinderElement>;
             "z-stock-price": LocalJSX.ZStockPrice & JSXBase.HTMLAttributes<HTMLZStockPriceElement>;
         }

@@ -5,12 +5,11 @@ import { Component, h } from "@stencil/core";
     shadow: true,
     styleUrl: './z-loader.css'
 })
+
 export class ZLoader {
     render() {
         return(
-            <div>
-                <p>loading</p>
-            </div>
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
         )
     }
 }
