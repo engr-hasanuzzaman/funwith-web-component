@@ -13,6 +13,7 @@ export class StockPrice {
     inputElm: HTMLInputElement;
 
     @State()  errorMsg: string;
+    @State() isLoading: boolean = false;
 
     // two way data binding
     @State() userInput: string;
@@ -45,6 +46,7 @@ export class StockPrice {
 
     // api call to fetch the price 
     fetchPrice(symbol: String) {
+        this.isLoading = true;
         fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${AV_API_KEY}`)
         .then(resp => {
             return resp.json();
@@ -57,7 +59,7 @@ export class StockPrice {
             this.errorMsg = null;
         }).catch((err: Error) => {
             this.errorMsg = err.message;
-        });
+        }).finally(() => this.isLoading = false);
     }
 
     @Watch('stockSymbol')
@@ -95,10 +97,14 @@ export class StockPrice {
                     <input type="text" name="symbol" id="symbol" value={this.userInput} onInput={this.onInput.bind(this)}/>
                     <button disabled={!this.isValidInput} class="btn">Fetch</button>
                 </form> 
-                <div>
-                    { this.errorMsg && <p>{this.errorMsg}</p> }
-                    { !this.errorMsg && <p>Price: {this.price}</p> }
-                </div>
+                { 
+                    !this.isLoading && 
+                    <div>
+                        { this.errorMsg && <p>{this.errorMsg}</p> }
+                        { !this.errorMsg && <p>Price: {this.price}</p> }
+                    </div>
+                }
+                { this.isLoading && <z-loader></z-loader> }
             </div>
         );
     }
