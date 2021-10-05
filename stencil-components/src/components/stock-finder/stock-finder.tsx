@@ -9,6 +9,7 @@ import { AV_API_KEY } from '../../global/global';
 export class StockFinder {
     @State() stockName: HTMLInputElement;
     @State() searchResults: { name: string, symbol: string}[] = [];
+    @State() isLoading: boolean = false;
     @Event({ bubbles: true, composed: true }) zSymbolSelected: EventEmitter<string>;
 
     onSelectSybol(symbol: string) {
@@ -18,10 +19,13 @@ export class StockFinder {
     onFindStocks(e: Event) {
         e.preventDefault();
         const keyWord = this.stockName.value;
+        this.isLoading = true;
         fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keyWord}&apikey=${AV_API_KEY}`)
         .then(resp => resp.json())
         .then(resp => {
             this.searchResults = resp['bestMatches'].map(r => ({ symbol: r['1. symbol'], name: r['2. name']}));
+        }).finally(() => {
+            this.isLoading = false;
         })
     }
 
@@ -32,14 +36,19 @@ export class StockFinder {
                     <input type="text" name="symbol" id="symbol" ref={el => this.stockName = el}/>
                     <button class="btn">Find</button>
                 </form>
-                <ul class="search-item">
-                    { this.searchResults.map(r => (
-                            <li onClick={this.onSelectSybol.bind(this, r.symbol)}>
-                                <strong>{r.symbol}</strong> - {r.name}
-                            </li>
-                        ))
-                    }
-                </ul>
+                { 
+                    !this.isLoading && 
+                    <ul class="search-item">
+                        { this.searchResults.map(r => (
+                                <li onClick={this.onSelectSybol.bind(this, r.symbol)}>
+                                    <strong>{r.symbol}</strong> - {r.name}
+                                </li>
+                            ))
+                        }
+                    </ul>
+                }
+                { this.isLoading && <z-loader></z-loader> }
+                
             </div>
         )
         ;
