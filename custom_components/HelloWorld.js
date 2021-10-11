@@ -3,6 +3,10 @@ class HelloWorld extends HTMLElement {
         super();
         this.innerText = "Hello World";
     }
+
+    // connectedCallback() {
+    //     this.innerText = "Hello World";
+    // }
 }
 
 // Rules for naming:
