@@ -1,12 +1,12 @@
 class HelloWorld extends HTMLElement {
-    constructor() {
-        super();
+    // constructor() {
+    //     super();
+    //     this.innerText = "Hello World foo";
+    // }
+
+    connectedCallback() {
         this.innerText = "Hello World";
     }
-
-    // connectedCallback() {
-    //     this.innerText = "Hello World";
-    // }
 }
 
 // Rules for naming:

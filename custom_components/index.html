@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- not related to custom element, meta tag for browser -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- include the scripts -->
     <script src="SubmitButton.js"></script>
     <script src="HelloWorld.js"></script>
     <script src="SubmitButtonShawdow.js"></script>
-    <script src="zTooltip.js"></script>
+    <script src="zModal.js"></script>
     <script src="confirmLink.js"></script>
+    <script src="ReactiveSubmitButton.js"></script>
+
     <title>Experimenting Custome Element</title>
+    
     <style>
         .btn {
             color: red;
@@ -20,27 +25,62 @@
 </head>
 <body>
     <!-- 1.1 example: simple web component -->
-    <hello-world></hello-world>
+    <!-- <hello-world></hello-world> -->
+
+    <!-- 2nd example: custome button -->
+    <submit-button label="submit"></submit-button>
 
     <!-- 3rd example. Inner style is changing the outer element also -->
     <!-- <button class="btn">Buitin Button</button> -->
-
-    <!-- 2nd example -->
-    <!-- <submit-button label="submit"></submit-button> -->
     
     <!-- 4th: shadow dom that create isolated aread from outside area -->
     <!-- <submit-button-shadow label="shadow submit"></submit-button-shadow> -->
 
-    <!-- 5th -->
-    <!-- usefill component, template, shadow dom -->
-    <!-- <p>We are leaning about the <z-tooltip text="info about web component">web component</z-tooltip></p>
-    <p>This is a suit of <z-tooltip>techonologies</z-tooltip></p> -->
+    <!-- 5th: attribute is not reactive, how to chage element with the change of attribute re -->
+    <!-- example use to attributeChangedCallback -->
+    <!-- 
+        var b = document.querySelector('r-submit-button-shadow');
+        b.setAttribute('label', 'update using code');
+     -->
+     <r-submit-button-shadow label="Reactive Button"></r-submit-button-shadow>
     
     <!-- 6th  -->
     <!-- A customized built-in element -->
     <!-- <a href="https://github.com/engr-hasanuzzaman" is="z-a" >Go to your Profile</button> -->
     
-    <!-- 1. -->
+    <!-- 7th use of slot -->
+
+    <!-- <button id="modal-controller">Show modal content</button>
+    <z-modal id="content-modal">
+        <div slot="header">
+            <h2>Main header</h2>
+            <h4>Sub header</h4>
+        </div>
+        <div>
+            <h2>This is content header</h2>
+            <p>This is dummy content for the modal body</p>
+        </div>
+    </z-modal>
+
+    <script>
+        const modal = document.querySelector('#content-modal');
+        // on confirm
+        modal.addEventListener('confirm', (event) => {
+            console.log('confirm triggered');
+            console.log(event.type);
+        });
+
+        modal.addEventListener('cancel', (event) => {
+            console.log('cancel triggered');
+            console.log(event.type);
+        });
+
+        document.querySelector('#modal-controller').addEventListener('click', () => {
+           modal.open();
+        });
+    </script> -->
+
+    <!-- 1.2 -->
     <!-- <script src="HelloWorld.js"></script> -->
 </body>
 </html>
