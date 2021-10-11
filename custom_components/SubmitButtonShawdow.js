@@ -1,8 +1,4 @@
 class SubmitButtonShadow extends HTMLElement {
-    constructor() {
-        super();
-    }
-
     // callback method, vue => mounted, reactjs => componentDidMount
     connectedCallback() {
         this.label = this.getAttribute('label');

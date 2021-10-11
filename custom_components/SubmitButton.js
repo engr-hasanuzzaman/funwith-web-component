@@ -1,8 +1,4 @@
 class SubmitButton extends HTMLElement {
-    constructor() {
-        super();
-    }
-
     // callback method
     connectedCallback() {
         this.label = this.getAttribute('label');
